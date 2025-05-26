@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.dao.ChatLogDAO">
+    <insert id="save" parameterType="com.example.backend.entity.ChatLog">
+        INSERT INTO tbl_chat_log (session_id, sender, message, timestamp)
+        VALUES (#{sessionId}, #{sender}, #{message}, NOW())
+    </insert>
+    
+    <select id="findBySessionId" resultType="com.example.backend.entity.ChatLog">
+        SELECT * FROM tbl_chat_log WHERE session_id = #{sessionId}
+        ORDER BY timestamp ASC
+    </select>
+    
+    <delete id="deleteBySessionId">
+        DELETE FROM tbl_chat_log WHERE session_id = #{sessionId}
+    </delete>
+</mapper> 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.dao.ChatSessionDAO">
+    <insert id="save" parameterType="com.example.backend.entity.ChatSession">
+        INSERT INTO tbl_chat_session (user_id, started_at)
+        VALUES (#{userId}, NOW())
+    </insert>
+    
+    <select id="findById" resultType="com.example.backend.entity.ChatSession">
+        SELECT * FROM tbl_chat_session WHERE session_id = #{sessionId}
+    </select>
+    
+    <select id="findByUserId" resultType="com.example.backend.entity.ChatSession">
+        SELECT * FROM tbl_chat_session WHERE user_id = #{userId}
+    </select>
+    
+    <delete id="delete">
+        DELETE FROM tbl_chat_session WHERE session_id = #{sessionId}
+    </delete>
+</mapper> 

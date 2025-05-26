@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.dao.RecommendationDAO">
+    <insert id="save" parameterType="com.example.backend.entity.Recommendation">
+        INSERT INTO tbl_recommendation (session_id, summary, full_response, created_at)
+        VALUES (#{sessionId}, #{summary}, #{fullResponse}, NOW())
+    </insert>
+    
+    <select id="findById" resultType="com.example.backend.entity.Recommendation">
+        SELECT * FROM tbl_recommendation WHERE rec_id = #{recId}
+    </select>
+    
+    <select id="findBySessionId" resultType="com.example.backend.entity.Recommendation">
+        SELECT * FROM tbl_recommendation WHERE session_id = #{sessionId}
+        ORDER BY created_at DESC
+    </select>
+    
+    <delete id="delete">
+        DELETE FROM tbl_recommendation WHERE rec_id = #{recId}
+    </delete>
+</mapper> 

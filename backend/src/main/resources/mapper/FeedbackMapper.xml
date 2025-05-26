@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.dao.FeedbackDAO">
+    <insert id="save" parameterType="com.example.backend.entity.Feedback">
+        INSERT INTO tbl_feedback (rec_id, difficulty, comment, submitted_at)
+        VALUES (#{recId}, #{difficulty}, #{comment}, NOW())
+    </insert>
+    
+    <select id="findById" resultType="com.example.backend.entity.Feedback">
+        SELECT * FROM tbl_feedback WHERE feedback_id = #{feedbackId}
+    </select>
+    
+    <select id="findByRecId" resultType="com.example.backend.entity.Feedback">
+        SELECT * FROM tbl_feedback WHERE rec_id = #{recId}
+        ORDER BY submitted_at DESC
+    </select>
+    
+    <delete id="delete">
+        DELETE FROM tbl_feedback WHERE feedback_id = #{feedbackId}
+    </delete>
+</mapper> 
